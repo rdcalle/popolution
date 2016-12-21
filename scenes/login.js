@@ -6,6 +6,8 @@ import {
   List, ListItem, Text, Thumbnail
 } from 'native-base';
 
+import { Actions } from 'react-native-router-flux';
+
 export default class Login extends Component {
   constructor() {
     super();
@@ -57,6 +59,7 @@ export default class Login extends Component {
                 </Button>
               </ListItem>
             </List>
+            <Text onPress={Actions.search}>Ir a búsquedas</Text>
           </Content>
         </Container>
       </Image>
