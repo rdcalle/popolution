@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import AppRouter from './router/AppRouter'
+import App from './App'
 
 export default class Popolution extends Component {
 
   render() {
-    return (
-      <Login />
-    );
+    return <App />
   }
 }
 

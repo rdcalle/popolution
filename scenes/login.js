@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Image } from 'react-native';
+import { connect } from 'react-redux';
 import {
   Button, Container, Content, Fab, H3,
   Icon, Input, InputGroup, InputList,
@@ -8,7 +9,11 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 
-export default class Login extends Component {
+class Login extends Component {
+  static propTypes = {
+    routes: PropTypes.object
+  };
+
   constructor() {
     super();
   }
@@ -59,13 +64,15 @@ export default class Login extends Component {
                 </Button>
               </ListItem>
             </List>
-            <Text onPress={Actions.search}>Ir a búsquedas</Text>
+            <Text onPress={Actions.search}>The current scene is titled {this.props.routes.scene.title}.</Text>
           </Content>
         </Container>
       </Image>
     );
   }
 }
+
+export default connect(({routes}) => ({routes}))(Login);
 
 const colorStyle = { color: '#404040' },
       h3FormStyle = {
