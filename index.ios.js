@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import Login from './scenes/login'
 
-export default class popolution extends Component {
-  componentDidMount() {
-    console.info('Cargué la app para Android');
-  }
+import App from './App'
+
+export default class Popolution extends Component {
 
   render() {
-    return <Login />
+    return <App />
   }
 }
 
-AppRegistry.registerComponent('popolution', () => popolution);
+AppRegistry.registerComponent('popolution', () => Popolution);
