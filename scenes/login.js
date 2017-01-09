@@ -7,6 +7,8 @@ import {
   List, ListItem, Text, Thumbnail
 } from 'native-base';
 
+import { prueba } from '../services/api';
+
 import { Actions } from 'react-native-router-flux';
 
 class Login extends Component {
@@ -48,7 +50,9 @@ class Login extends Component {
                 </InputGroup>
               </ListItem>
               <ListItem style={{ borderColor: '#666', marginLeft: 0 }}>
-                <Button style={{ ...formBtnStyle, marginTop: 10 }}>
+                <Button
+                  onPress={prueba} 
+                  style={{ ...formBtnStyle, marginTop: 10 }}>
                   Entrar
                 </Button>
               </ListItem>
