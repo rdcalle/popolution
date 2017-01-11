@@ -7,7 +7,9 @@ import {
   List, ListItem, Text, Thumbnail
 } from 'native-base';
 
-import { prueba } from '../services/api';
+import { doPost } from '../services/Api';
+import { set, get } from '../services/AsyncStore';
+import { showError } from '../services/Alert';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -18,6 +20,15 @@ class Login extends Component {
 
   constructor() {
     super();
+  }
+
+  login(){
+    doPost("auth/login",{} ,{email: "prueba", password: "prueba"}).then(
+      (data) => set("popolution", data.token).then(
+        () => Actions.main()
+      )
+    , (error) => showError("Usuario o password incorrectos")
+    )
   }
 
   render() {
@@ -51,13 +62,15 @@ class Login extends Component {
               </ListItem>
               <ListItem style={{ borderColor: '#666', marginLeft: 0 }}>
                 <Button
-                  onPress={prueba} 
+                  onPress={ this.login } 
                   style={{ ...formBtnStyle, marginTop: 10 }}>
                   Entrar
                 </Button>
               </ListItem>
               <ListItem>
-                <Button style={{ ...rrssBtnStyle, backgroundColor: '#dd4b39' }}>
+                <Button
+                  onPres={() => openUrl("http://www.google.com")}
+                  style={{ ...rrssBtnStyle, backgroundColor: '#dd4b39' }}>
                   <Icon name="logo-google" />
                 </Button>
                 <Button style={{ ...rrssBtnStyle, backgroundColor: '#3b5998' }}>
