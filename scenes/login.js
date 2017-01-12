@@ -7,6 +7,8 @@ import {
   List, ListItem, Text, Thumbnail
 } from 'native-base';
 
+import { LoginManager } from 'react-native-fbsdk';
+
 import { doPost } from '../services/Api';
 import { set, get } from '../services/AsyncStore';
 import { showError } from '../services/Alert';
@@ -21,6 +23,23 @@ class Login extends Component {
   constructor() {
     super();
   }
+
+  facebookLogin(){
+    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
+      function(result) {
+        if (result.isCancelled) {
+          showError('Login was cancelled');
+        } else {
+          showError('Login was successful with permissions: '
+            + result.toString());
+        }
+      },
+      function(error) {
+        showError('Login failed with error: ' + error);
+      }
+    );
+  }
+
 
   login(){
     doPost("auth/login",{} ,{email: "prueba", password: "prueba"}).then(
@@ -69,11 +88,12 @@ class Login extends Component {
               </ListItem>
               <ListItem>
                 <Button
-                  onPres={() => openUrl("http://www.google.com")}
                   style={{ ...rrssBtnStyle, backgroundColor: '#dd4b39' }}>
                   <Icon name="logo-google" />
                 </Button>
-                <Button style={{ ...rrssBtnStyle, backgroundColor: '#3b5998' }}>
+                <Button 
+                  onPress={this.facebookLogin}
+                  style={{ ...rrssBtnStyle, backgroundColor: '#3b5998' }}>
                   <Icon name="logo-facebook" />
                 </Button>
                 <Button style={{ ...rrssBtnStyle, backgroundColor: '#55acee' }}>
