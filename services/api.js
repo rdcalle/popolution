@@ -1,6 +1,8 @@
+import { get } from '../services/AsyncStore';
+
 const defaultHeaders = {
-	"Content-Type": "application/json",
-	"Accept": "application/json"
+	Content-Type: "application/json",
+	Accept: "application/json"
 }
 
 const serverUrl = "http://192.168.1.48:3000/"
@@ -13,7 +15,7 @@ const parseParameters = (url, params) => {
 }	
 
 
-doFetch = (method, uri, params = {}, body = {}, headers = {}) => {
+export const doFetch = (method, uri, params = {}, body = {}, headers = {}) => {
 	let url = parseParameters(serverUrl + uri, params);
 
 	let options = {
@@ -35,8 +37,15 @@ doFetch = (method, uri, params = {}, body = {}, headers = {}) => {
 		});
 }    
 
-export const doGet = (uri, params, headers) => 
-	doFetch("GET", uri, params, {}, headers)
+export const doGet = (uri, params, headers) =>
+	get("popolution-token").then(
+		(token) => doFetch("GET", uri, params, {}, Object.assign({}, headers,{authorization: token}))
+	, (error) => Promise.reject(new Error(error))
+	)
+	
 
 export const doPost = (uri, params, body, headers) => 
-	doFetch("POST", uri, params, body, headers)	
+	get("popolution-token").then(
+		(token) => doFetch("POST", uri, params, body, Object.assign({}, headers, token))
+	, (error) => Promise.reject(new Error(error))
+	)

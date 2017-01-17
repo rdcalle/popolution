@@ -8,6 +8,7 @@ import Login from './scenes/Login'
 import Search from './scenes/Search';
 import Main from './scenes/Main';
 import PageTwo from './scenes/PageTwo';
+import Signup from './scenes/Signup';
 
 const RouterWithRedux = connect()(Router);
 import reducers from './reducers';
@@ -25,6 +26,7 @@ class App extends Component {
         <RouterWithRedux>
           <Scene key="root">
             <Scene key="login" component={Login} hideNavBar title='login' initial={true} />
+            <Scene key="signup" component={Signup} hideNavBar title='signup' />
             <Scene key="main" component={Main} hideNavBar />
             <Scene key="search" component={Search} hideNavBar />
             <Scene key="pageTwo" component={PageTwo} hideNavBar />
