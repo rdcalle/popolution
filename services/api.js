@@ -1,8 +1,8 @@
 import { get } from '../services/AsyncStore';
 
 const defaultHeaders = {
-	Content-Type: "application/json",
-	Accept: "application/json"
+	['Content-Type']: "application/json",
+	['Accept']: "application/json"
 }
 
 const serverUrl = "http://192.168.1.48:3000/"

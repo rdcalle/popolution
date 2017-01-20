@@ -4,17 +4,15 @@ import { Router, Scene } from 'react-native-router-flux';
 import { connect, Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import Login from './scenes/Login'
-import Search from './scenes/Search';
-import Main from './scenes/Main';
-import PageTwo from './scenes/PageTwo';
-import Signup from './scenes/Signup';
+import Login from './src/Login';
+import Main from './src/Main';
 
 const RouterWithRedux = connect()(Router);
 import reducers from './reducers';
 
 // create store...
 const middleware = [/* ...your middleware (i.e. thunk) */];
+
 const store = compose(
   applyMiddleware(...middleware)
 )(createStore)(reducers);
@@ -26,10 +24,7 @@ class App extends Component {
         <RouterWithRedux>
           <Scene key="root">
             <Scene key="login" component={Login} hideNavBar title='login' initial={true} />
-            <Scene key="signup" component={Signup} hideNavBar title='signup' />
-            <Scene key="main" component={Main} hideNavBar />
-            <Scene key="search" component={Search} hideNavBar />
-            <Scene key="pageTwo" component={PageTwo} hideNavBar />
+            <Scene key="main" component={Main}  title='main' hideNavBar />
           </Scene>
         </RouterWithRedux>
       </Provider>
