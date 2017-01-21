@@ -39,7 +39,8 @@ export const doFetch = (method, uri, params = {}, body = {}, headers = {}) => {
 
 export const doGet = (uri, params, headers) =>
 	get("popolution-token").then(
-		(token) => doFetch("GET", uri, params, {}, Object.assign({}, headers,{authorization: token}))
+		(token) => 
+				return doFetch("GET", uri, params, {}, Object.assign({}, headers, {authorization: token}))
 	, (error) => Promise.reject(new Error(error))
 	)
 	

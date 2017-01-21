@@ -54,7 +54,7 @@ export const twitterLogin = () => {
 export const login = (email, password) => {
     doPostWithoutToken("auth/login",{} ,{email: email, password: password}).then(
       (data) => set("popolution-token", data.token).then(
-        () => Actions.main()
+        () => Actions.main({type: ActionConst.REPLACE})
       )
     , (error) => showError("Usuario o password incorrectos")
     )
@@ -68,7 +68,7 @@ export const signup = (email, password, confirm_password) => {
 
     doPostWithoutToken("auth/signup",{} ,{email: email, password: password}).then(
       (data) => set("popolution-token", data.token).then(
-        () => Actions.main()
+        () => Actions.main({type: ActionConst.REPLACE})
       )
     , (error) => showError("Usuario o password incorrectos")
     )
@@ -77,7 +77,7 @@ export const signup = (email, password, confirm_password) => {
 export const checkToken = () => {
   	doGet("auth/token").then(
       (data) => set("popolution-token", data.token).then(
-        () => Actions.main()
+        () => Actions.main({type: ActionConst.REPLACE})
       ),
       (error) => 
         console.log("usuario no autenticado")

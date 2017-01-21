@@ -127,7 +127,7 @@ class LoginView extends Component {
                   flexDirection: 'column'
                 }}>
                   <Button
-                    onPress={ this.signupWithState } 
+                    onPress={(signupView) ? this.signupWithState : this.loginWithState  } 
                     style={{ ...formBtnStyle, marginTop: 10 }}>
                     Entrar
                   </Button>
