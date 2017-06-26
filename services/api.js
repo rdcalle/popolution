@@ -5,7 +5,7 @@ const defaultHeaders = {
 	['Accept']: "application/json"
 }
 
-const serverUrl = "http://192.168.1.48:3000/"
+const serverUrl = "http://192.168.1.98:3000/"
 
 const parseParameters = (url, params) => {
 	// Parse parameters
@@ -40,7 +40,7 @@ export const doFetch = (method, uri, params = {}, body = {}, headers = {}) => {
 export const doGet = (uri, params, headers) =>
 	get("popolution-token").then(
 		(token) => 
-				return doFetch("GET", uri, params, {}, Object.assign({}, headers, {authorization: token}))
+				doFetch("GET", uri, params, {}, Object.assign({}, headers, {authorization: token}))
 	, (error) => Promise.reject(new Error(error))
 	)
 	

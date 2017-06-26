@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class Main extends Component {
+
   render() {
     return (
-      <View style={{margin: 128}}>
-        <Text onPress={Actions.search}>Esto es el main!</Text>
-      </View>
+      <Text>"esto es una prueba"</Text>
     )
   }
 }

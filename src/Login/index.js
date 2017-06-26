@@ -3,9 +3,9 @@ import { Image, View, Animated } from 'react-native';
 import { connect } from 'react-redux';
 
 import {
-  Button, Container, Content, Fab,
-  Icon, Input, InputGroup, InputList,
-  List, ListItem, Text, Thumbnail
+  Button, Container, Content,
+  Icon, Input, List, ListItem, Text, 
+  Thumbnail
 } from 'native-base';
 
 import { login, signup, googleLogin, checkToken, facebookLogin, twitterLogin } from '../../services/Auth';
@@ -20,10 +20,6 @@ const initState = {
       }
 
 class LoginView extends Component {
-  static propTypes = {
-    routes: PropTypes.object
-  };
-
   constructor() {
     super();
 
@@ -90,35 +86,29 @@ class LoginView extends Component {
             />
             <List style={formStyle}>
               <ListItem>
-                <InputGroup>
-                  <Icon name="ios-person" style={colorStyle} />
-                  <Input
-                    onChangeText={(value) => this.handleOnChange(value, "email")} 
-                    placeholder="Email" 
-                    style={colorStyle} />
-                </InputGroup>
+                <Icon name="ios-person" style={colorStyle} />
+                <Input
+                  onChangeText={(value) => this.handleOnChange(value, "email")} 
+                  placeholder="Email" 
+                  style={colorStyle} />
               </ListItem>
               <ListItem>
-                <InputGroup>
-                  <Icon name="ios-unlock" style={colorStyle} />
-                  <Input
-                    onChangeText={(value) => this.handleOnChange(value, "password")} 
-                    placeholder="Contraseña" 
-                    secureTextEntry 
-                    style={colorStyle} />
-                </InputGroup>
+                <Icon name="ios-unlock" style={colorStyle} />
+                <Input
+                  onChangeText={(value) => this.handleOnChange(value, "password")} 
+                  placeholder="Contraseña" 
+                  secureTextEntry 
+                  style={colorStyle} />
               </ListItem>
               <Animated.View style={{ overflow: 'hidden',
                                       maxHeight: maxHeightAnimationInput}}>
                 <ListItem>
-                  <InputGroup>
-                    <Icon name="ios-unlock" style={colorStyle} />
-                    <Input
-                      onChangeText={(value) => this.handleOnChange(value, "confirm_password")} 
-                      placeholder="Confirmar contraseña" 
-                      secureTextEntry 
-                      style={colorStyle} />
-                  </InputGroup>
+                  <Icon name="ios-unlock" style={colorStyle} />
+                  <Input
+                    onChangeText={(value) => this.handleOnChange(value, "confirm_password")} 
+                    placeholder="Confirmar contraseña" 
+                    secureTextEntry 
+                    style={colorStyle} />
                 </ListItem>
               </Animated.View>  
               <ListItem style={{ borderColor: '#666', marginLeft: 0 }}>
@@ -166,7 +156,7 @@ class LoginView extends Component {
   }
 }
 
-export default connect(({routes}) => ({routes}))(LoginView);
+export default LoginView;
 
 const imageStyle = {
         flex: 1,
